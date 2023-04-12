@@ -33,7 +33,7 @@ fancyplot
 fancyplot1<-ggplot(gc_clean, aes(x=max_temp, y=SSU_GC)) + 
   geom_smooth(method=lm, se=FALSE, color="gray") +          
   geom_point(aes(color=habitat, shape=habitat), size=5) +
-  geom_text(aes(label=ifelse(SSU_GC>54,as.character(species),''),hjust=1.2,vjust=1.5)) +
+  geom_text(aes(label=ifelse(SSU_GC>54,as.character(species),''),hjust=1.2,vjust=1.5), size=5) +
   scale_color_manual(values=c('#56B4E9','#999999','#E69F00')) +
   theme(legend.key.size = unit(2, 'cm'), legend.title = element_text(size=18),
         legend.text = element_text(size=20),
@@ -49,7 +49,7 @@ fancyplot1
 fancyplot2<-ggplot(gc_clean, aes(x=max_temp, y=SSU_GC)) + 
   geom_smooth(method=lm, se=FALSE, color="gray") +          
   geom_point(aes(color=habitat, shape=habitat), size=5) +
-  geom_text(aes(label=ifelse(SSU_GC>54,as.character(species),''),hjust=1.2,vjust=1.5)) +
+  geom_text(aes(label=ifelse(SSU_GC>54,as.character(species),''),hjust=1.2,vjust=1.5), size=5) +
   scale_color_manual(values=c('#666666','#999999','#333333')) +
   theme(legend.key.size = unit(2, 'cm'), legend.title = element_text(size=18),
         legend.text = element_text(size=20),
