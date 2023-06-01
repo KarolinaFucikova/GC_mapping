@@ -61,6 +61,26 @@ fancyplot2<-ggplot(gc_clean, aes(x=max_temp, y=SSU_GC)) +
 
 fancyplot2
 
+# correlation excluding the outlier strain (WJT) and also without taxa with no temp data
+gc_noWJT <- gc_data[-c(1,13,30),]
+# simple scatter plot of gc as a function of average temp in the warmest month
+plot(gc_noWJT$max_temp,gc_noWJT$SSU_GC)
+cor.test(gc_noWJT$max_temp, gc_noWJT$SSU_GC, method=c("pearson"))
+fancyplot3<-ggplot(gc_noWJT, aes(x=max_temp, y=SSU_GC)) + 
+  geom_smooth(method=lm, se=FALSE, color="gray") +          
+  geom_point(aes(color=habitat, shape=habitat), size=5) +
+  geom_text(aes(label=ifelse(SSU_GC>54,as.character(species),''),hjust=1.2,vjust=1.5), size=5) +
+  scale_color_manual(values=c('#666666','#999999','#333333')) +
+  theme(legend.key.size = unit(2, 'cm'), legend.title = element_text(size=18),
+        legend.text = element_text(size=20),
+        axis.text.x = element_text(size = 15),
+        axis.text.y = element_text(size = 15),
+        axis.title = element_text(size = 20)) + 
+  labs(x = "max temperature at site of origin (°C)",
+       y = "% GC content in 18S gene")
+
+fancyplot3
+
 ## mapping GC content (or other traits) onto a tree
 WJTtree <- "data/cp_nt_concatenated.con.tre"
 WJT<-read.nexus(WJTtree)
