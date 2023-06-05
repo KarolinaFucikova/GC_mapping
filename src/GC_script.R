@@ -23,6 +23,11 @@ cor.test(gc_data$max_temp, gc_data$SSU_GC, method=c("pearson"))
 #plot(gc_data$cp_size,gc_data$cp_GC_coding,na.rm=TRUE)
 ## not a lot of obvious correlation, except for total GC to coding GC
 
+#chloroplast rrs vs. temperature
+plot(gc_data$max_temp,gc_data$SSU_cp_GC)
+cor.test(gc_data$max_temp, gc_data$SSU_cp_GC, method=c("pearson"))
+# weak positive correlation, barely significant 0.04993, r = 0.2733
+
 ## 18S GC as function of temperature, divided by habitat type
 fancyplot<-ggplot(gc_clean, aes(x=max_temp, y=SSU_GC, color=habitat, shape=habitat)) + 
   geom_point(size=5) + geom_smooth(method=lm, aes(fill=habitat))
